@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <h1>I'm Alerts SUCKA</h1>
     <table class="table">
       <thead>
         <tr>
@@ -23,6 +22,22 @@
         </tr>
       </tbody>
     </table>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Node ID</th>
+          <th scope="col">Description</th>
+          <th scope="col">ip Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="device in device_list" v-bind:key="device.node_id">
+          <th>{{ device.node_id }}</th>
+          <th>{{ device.description }}</th>
+          <th>{{ device.ip_address }}</th>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -33,7 +48,8 @@ export default {
   data() {
     return {
       consolData: [],
-      alerts:[]
+      alerts:[],
+      device_list:[]
     };
   },
   created: function () {
@@ -42,10 +58,21 @@ export default {
         "https://thinkst-frontend-resources.s3-eu-west-1.amazonaws.com/incidents/data.json"
       )
       .then((res) => {
+          console.log(res);
         this.consolData = res.data;
         this.alerts = this.consolData.alerts;
-        console.log("First pull through ", this.consolData.alerts);
+        this.device_list = this.consolData.device_list;
+        console.log("First pull through ", res.data);
       });
   },
 };
 </script>
+<style scoped>
+.container {
+    display: flex;
+}
+
+.container table {
+    flex-direction: column;
+}
+</style>
