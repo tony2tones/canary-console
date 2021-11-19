@@ -24,6 +24,7 @@ Profile view of Device
 list of main core details and additional details
 current alert status
 
+look into using the window finder as a quick seach
 ----------------------------endpoint ----------------------
 
 https://thinkst-frontend-resources.s3-eu-west-1.amazonaws.com/incidents/data.json
