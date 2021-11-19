@@ -1,15 +1,28 @@
 <template>
   <div class="container">
     <h1>I'm Alerts SUCKA</h1>
-
-    <div v-for="alert in alerts" v-bind:key="alert[0].key">
-      <p>{{ alert[0].description }}</p>
-      <p>{{ alert[0].description }}</p>
-      <p>{{ alert[0].dst_host }}</p>
-      <p>{{ alert[0].src_host }}</p>
-      <p>{{ alert[0].created }}</p>
-      <p>{{ alert[0].node_id }}</p>
-    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">key</th>
+          <th scope="col">Description</th>
+          <th scope="col">dst_host</th>
+          <th scope="col">src_host</th>
+          <th scope="col">Created on</th>
+          <th scope="col">Node ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="alert in alerts" v-bind:key="alert.key">
+          <th>{{ alert.key }}</th>
+          <th>{{ alert.description }}</th>
+          <th>{{ alert.dst_host }}</th>
+          <th>{{ alert.src_host }}</th>
+          <th>{{ alert.created }}</th>
+          <th>{{ alert.node_id }}</th>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -19,7 +32,8 @@ import axios from "axios";
 export default {
   data() {
     return {
-      alerts: [],
+      consolData: [],
+      alerts:[]
     };
   },
   created: function () {
@@ -28,8 +42,9 @@ export default {
         "https://thinkst-frontend-resources.s3-eu-west-1.amazonaws.com/incidents/data.json"
       )
       .then((res) => {
-        this.alerts = res.data;
-        console.log("First pull through ", this.alerts.alerts);
+        this.consolData = res.data;
+        this.alerts = this.consolData.alerts;
+        console.log("First pull through ", this.consolData.alerts);
       });
   },
 };
