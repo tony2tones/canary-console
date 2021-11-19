@@ -1,4 +1,4 @@
-# canary-console
+# router-project
 
 ## Project setup
 ```

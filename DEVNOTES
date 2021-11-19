@@ -1,0 +1,25 @@
+Search bar to filter through list
+
+Alert icons on Device panel
+
+a device can have one or many alerts
+
+click through for full view of data
+
+Primarily show this data
+for ALERTS:
+key		– unique identifier that represents this incident 
+description	– type of attack (e.g. FTP Login Attempt)
+dst_host	– IP address of the Canary device
+src_host	– IP address of the attacker
+created	– timestamp of the incident in seconds since 1970-01-01 00:00
+node_id	– identity of the Canary device which reported the incident
+
+For DEVICES:
+node_id	– unique identifier for a device
+description	– the Canary that was targeted
+ip_address	– current IP address of the Canary device
+
+Profile view of Device
+list of main core details and additional details
+current alert status

@@ -1,28 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Lets go somewhere wnaker</h1>
+    <hr />
+    <router-link to="/">Home</router-link>
+    <router-link to="/users/11">Users 11</router-link>
+    <router-link to="/users/9">Users 9</router-link>
+    <hr />
+    <router-view></router-view>
+    <HelloWorld />
   </div>
 </template>
-https://www.youtube.com/watch?v=7iDGJolHFmU&ab_channel=TheNetNinja
-<script>
-import HelloWorld from './components/HelloWorld.vue'
 
-export default {
-  name: 'App',
+<script>
+import HelloWorld from './components/HelloWorld.vue';
+
+export default ({
   components: {
     HelloWorld
-  }
-}
+  },
+  data() {
+    return {}
+    // https://www.youtube.com/watch?v=7iDGJolHFmU&ab_channel=TheNetNinja
+  },
+})
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
+
 </style>
