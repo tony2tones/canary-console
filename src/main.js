@@ -3,6 +3,9 @@ import VueRouter from 'vue-router';
 import App from './App.vue'
 import Devices from './components/Devices.vue';
 import Alerts from './components/Alerts.vue';
+import Home from './components/Home.vue';
+import DevicePanel from './components/DevicePanel.vue';
+
 import store from './store';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
@@ -16,14 +19,17 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 
 const routes = [
-  // { path: '/devices/:teamId', component: Devices },
-  { path: '/', component: Devices },
+  { path: '/', component: Home },
+  { path: '/devices', component: Devices },
+  { path: '/devices/:node_id', component: DevicePanel },
   { path: '/alerts', component: Alerts },
 ]
 
 const router = new VueRouter({
   routes: routes,
-  mode: 'history'
+  mode: 'history',
+  linkActiveClass: "active", // active class for non-exact links.
+  linkExactActiveClass: "active" // active class for *exact* links.
 });
 
 Vue.config.productionTip = false

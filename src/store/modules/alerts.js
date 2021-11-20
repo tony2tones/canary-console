@@ -11,7 +11,6 @@ const getters = {
 const actions = {
     async fetchAlerts({ commit }) {
         const response  = await axios.get('https://thinkst-frontend-resources.s3-eu-west-1.amazonaws.com/incidents/data.json')
-        console.log(response.data);
         commit('setAlerts', response.data.alerts);
     }
 };

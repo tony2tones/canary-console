@@ -1,64 +1,44 @@
 <template>
-  <div class="container">
-    <div class="table-holder">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">key</th>
-            <th scope="col">Description</th>
-            <th scope="col">dst_host</th>
-            <th scope="col">src_host</th>
-            <th scope="col">Created on</th>
-            <th scope="col">Node ID</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="alert in alerts" v-bind:key="alert.key">
-            <th>{{ alert.key }}</th>
-            <th>{{ alert.description }}</th>
-            <th>{{ alert.dst_host }}</th>
-            <th>{{ alert.src_host }}</th>
-            <th>{{ alert.created }}</th>
-            <th>{{ alert.node_id }}</th>
-          </tr>
-        </tbody>
-      </table>
+   <div class="container">
+    <h3>Devices</h3>
+    <div class="devices">
+      <div v-for="device in deviceInfo" v-bind:key="device.node_id" class="device">
+        <p>Node ID: {{ device.node_id }}</p>
+        <p>Description: {{ device.description }}</p>
+        <p>ip address: {{ device.ip_address }}</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-
+import { mapGetters, mapActions } from "vuex";
 export default {
-  data() {
-    return {
-      consolData: [],
-      alerts: [],
-    };
+  name: "Devices",
+  methods: {
+      ...mapActions(['fetchDevicesAndAlerts'])
   },
-  created: function () {
-    axios
-      .get(
-        "https://thinkst-frontend-resources.s3-eu-west-1.amazonaws.com/incidents/data.json"
-      )
-      .then((res) => {
-        console.log(res);
-        this.consolData = res.data;
-        this.alerts = this.consolData.alerts;
-        this.device_list = this.consolData.device_list;
-        console.log("First pull through ", res.data);
-      });
-  },
+  computed: mapGetters(["deviceInfo"]),
+  created() {
+      this.fetchDevicesAndAlerts();
+  }
 };
 </script>
+
 <style scoped>
-.container {
-  justify-content: space-around;
+.devices {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
 }
 
-.table-holder {
-  flex-direction: column;
-  justify-content: flex-end;
+.device {
+    border: 1px solid rgb(157, 212, 248);
+    background: rgb(200, 207, 200);
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: left;
+    position: relative;
+    cursor: pointer;
 }
 </style>
