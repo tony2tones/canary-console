@@ -25,8 +25,8 @@ const actions = {
             for (let j = 0; j < alerts.length; j++) {
                 let idLink = alerts[j].node_id;
                 if (idLink === nodeCheck) {
-                    console.log('sorted results ALERTS ONLY PER DEVICE', alerts[j]);
 // gotta check if I already have alerts and if I do I'll need to Add it not replace it
+
                     devices[i]['alerts'] = [alerts[j]];
                 }
 
