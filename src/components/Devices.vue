@@ -1,53 +1,44 @@
 <template>
-  <div class="container">
-    <div class="table-holder">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Node ID</th>
-            <th scope="col">Description</th>
-            <th scope="col">ip Address</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="device in device_list" v-bind:key="device.node_id">
-            <th>{{ device.node_id }}</th>
-            <th>{{ device.description }}</th>
-            <th>{{ device.ip_address }}</th>
-          </tr>
-        </tbody>
-      </table>
-      <button @click="gohome">Go Home</button>
+   <div class="container">
+    <h3>Devices</h3>
+    <div class="devices">
+      <div v-for="device in device_list" v-bind:key="device.node_id" class="device">
+        <p>Node ID: {{ device.node_id }}</p>
+        <p>Description: {{ device.description }}</p>
+        <p>ip address: {{ device.ip_address }}</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-
+import { mapGetters, mapActions } from "vuex";
 export default {
-   data() {
-    return {
-      consolData: [],
-      device_list: [],
-    };
+  name: "Devices",
+  methods: {
+      ...mapActions(['fetchDevices'])
   },
-  mounted() {
-    axios
-      .get(
-        "https://thinkst-frontend-resources.s3-eu-west-1.amazonaws.com/incidents/data.json"
-      )
-      .then((res) => {
-        console.log(res);
-        this.consolData = res.data;
-        this.device_list = this.consolData.device_list;
-        console.log("Set device_list here ", this.device_list);
-      });
-  },
-  // methods: {
-  //   gohome() {
-  //     this.$router.push("/");
-  //   },
-  // },
+  computed: mapGetters(["device_list"]),
+  created() {
+      this.fetchDevices();
+  }
 };
 </script>
+
+<style scoped>
+.devices {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+}
+
+.device {
+    border: 1px solid rgb(157, 212, 248);
+    background: rgb(200, 207, 200);
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: left;
+    position: relative;
+    cursor: pointer;
+}
+</style>

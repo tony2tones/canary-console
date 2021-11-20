@@ -7,19 +7,20 @@
     <router-link to="/Alerts">Alerts</router-link>
     <hr />
     <div class="container">
-      <Alerts />
-      <!-- <router-view></router-view> -->
+      <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
-import Alerts from "./components/Alerts.vue";
+// import Alerts from "./components/Alerts.vue";
+// import Devices from "./components/Devices.vue";
 
 export default {
   name: "app",
   components: {
-    Alerts,
+    // Alerts,
+    // Devices
   },
   
     // https://www.youtube.com/watch?v=7iDGJolHFmU&ab_channel=TheNetNinja
@@ -27,8 +28,8 @@ export default {
 </script>
 
 <style scoped>
-body {
-  background: #7485a1;
+#app {
+  background: #b3c6e4;
 }
 
 .container {

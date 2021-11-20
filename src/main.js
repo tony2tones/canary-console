@@ -3,7 +3,6 @@ import VueRouter from 'vue-router';
 import App from './App.vue'
 import Devices from './components/Devices.vue';
 import Alerts from './components/Alerts.vue';
-import Home from './components/Home.vue';
 import store from './store';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
@@ -18,9 +17,8 @@ Vue.use(IconsPlugin);
 
 const routes = [
   // { path: '/devices/:teamId', component: Devices },
-  { path: '/devices', component: Devices },
+  { path: '/', component: Devices },
   { path: '/alerts', component: Alerts },
-  { path: '/', component: Home },
 ]
 
 const router = new VueRouter({
