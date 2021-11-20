@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from './App.vue'
-import Users from './Users.vue';
-import Home from './Home.vue';
+import Devices from './components/Devices.vue';
+import Alerts from './components/Alerts.vue';
+import store from './store';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
 // Import Bootstrap an BootstrapVue CSS files (order is important)
@@ -15,8 +16,9 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 
 const routes = [
-  { path: '/users/:teamId', component: Users },
-  { path: '/', component: Home },
+  // { path: '/devices/:teamId', component: Devices },
+  { path: '/', component: Devices },
+  { path: '/alerts', component: Alerts },
 ]
 
 const router = new VueRouter({
@@ -27,6 +29,7 @@ const router = new VueRouter({
 Vue.config.productionTip = false
 
 new Vue({
+  store,
   el: '#app',
   router: router,
   render: h => h(App),
