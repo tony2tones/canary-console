@@ -4,22 +4,6 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Node ID</th>
-            <th scope="col">Description</th>
-            <th scope="col">ip Address</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="device in device_list" v-bind:key="device.node_id">
-            <th>{{ device.node_id }}</th>
-            <th>{{ device.description }}</th>
-            <th>{{ device.ip_address }}</th>
-          </tr>
-        </tbody>
-      </table>
-      <table class="table">
-        <thead>
-          <tr>
             <th scope="col">key</th>
             <th scope="col">Description</th>
             <th scope="col">dst_host</th>
@@ -51,7 +35,6 @@ export default {
     return {
       consolData: [],
       alerts: [],
-      device_list: [],
     };
   },
   created: function () {
