@@ -10,12 +10,32 @@ const getters = {
 
 const actions = {
     async fetchDevicesAndAlerts({ commit }) {
-        const response  = await axios.get('https://thinkst-frontend-resources.s3-eu-west-1.amazonaws.com/incidents/data.json')
-        console.log(response.data.device_list[0]);
-        console.log(response.data.alerts[0]);
+        const response = await axios.get('https://thinkst-frontend-resources.s3-eu-west-1.amazonaws.com/incidents/data.json')
+        let newArr = [];
+        // get some data stored to work with
+        let alerts = response.data.alerts;
+        let devices = response.data.device_list;
+        console.log('Alerts', alerts[0]);
+        console.log('devices length', devices[1]);
+        // get a list of the devices, note the node_id as an identifier
+        // let deviceProfile = devices.map((device) => {
+        for (let i = 0; i < devices.length; i++) {
+            let nodeCheck = devices[i].node_id;
 
-        commit('setDevices', response.data.device_list);
-    }
+            for (let j = 0; j < alerts.length; j++) {
+                let idLink = alerts[j].node_id;
+                if (idLink === nodeCheck) {
+                    console.log('sorted results ALERTS ONLY PER DEVICE', alerts[j]);
+// gotta check if I already have alerts and if I do I'll need to Add it not replace it
+                    devices[i]['alerts'] = [alerts[j]];
+                }
+
+            }
+        }
+        console.log('sorted results', devices);
+        // console.log('sorted results', devices[0]['alerts'] = {alerts: [ {alert: 'one'}]});
+        commit('setDevices', devices);
+}
 };
 
 const mutations = {

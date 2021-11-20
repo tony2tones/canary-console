@@ -2,7 +2,7 @@
    <div class="container">
     <h3>Devices</h3>
     <div class="devices">
-      <div v-for="device in device_list" v-bind:key="device.node_id" class="device">
+      <div  v-for="device in device_list"  v-bind:key="device.node_id" class="device">
         <p>Node ID: {{ device.node_id }}</p>
         <p>Description: {{ device.description }}</p>
         <p>ip address: {{ device.ip_address }}</p>
@@ -17,7 +17,7 @@ export default {
   name: "Devices",
   methods: {
       ...mapActions(['fetchDevices'])
-  },
+    },
   computed: mapGetters(["device_list"]),
   created() {
       this.fetchDevices();
