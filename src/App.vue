@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <h1>Lets go somewhere wnaker</h1>
+    <h1>Canary Console</h1>
     <hr />
-    <router-link to="/">Home</router-link>
-    <router-link to="/devices">Devices</router-link>
-    <router-link to="/Alerts">Alerts</router-link>
+    <nav class="navBar">
+    <router-link tag="li" active-class="active" to="/" exact >Home</router-link>
+    <router-link tag="li" active-class="active" to="/devices" exact>Devices</router-link>
+    <router-link tag="li" active-class="active" to="/Alerts" exact>Alerts</router-link>
+    </nav>
     <hr />
     <div class="container">
       <router-view></router-view>
@@ -37,5 +39,23 @@ export default {
   margin:auto;
   overflow: auto;
   padding: 0 2rem;
+}
+
+.navBar {
+  display: flex;
+  list-style: none;
+}
+
+.navBar:hover {
+  cursor: pointer;
+}
+
+.navBar > li {
+  padding-left: 20px;
+}
+
+
+.active {
+  color: blue;
 }
 </style>

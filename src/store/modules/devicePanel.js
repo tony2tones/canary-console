@@ -1,22 +1,22 @@
 import axios from 'axios';
 
 const state = {
-    alerts: []
+    device_list: []
 };
 
 const getters = {
-    allAlerts: (state) => state.alerts
+    device_list: (state) => state.device_list
 };
 
 const actions = {
-    async fetchAlerts({ commit }) {
+    async fetchDevices({ commit }) {
         const response  = await axios.get('https://thinkst-frontend-resources.s3-eu-west-1.amazonaws.com/incidents/data.json')
-        commit('setAlerts', response.data.alerts);
+        commit('setDevices', response.data.device_list);
     }
 };
 
 const mutations = {
-    setAlerts: (state, alerts) => (state.alerts = alerts)
+    setDevices: (state, device_list) => (state.device_list = device_list)
 };
 
 export default {
