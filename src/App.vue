@@ -21,17 +21,8 @@
 </template>
 
 <script>
-// import Alerts from "./components/Alerts.vue";
-// import Devices from "./components/Devices.vue";
-
 export default {
   name: "app",
-  components: {
-    // Alerts,
-    // Devices
-  },
-
-  // https://www.youtube.com/watch?v=7iDGJolHFmU&ab_channel=TheNetNinja
 };
 </script>
 
@@ -41,14 +32,13 @@ export default {
   background: #24272e;
   height: 100vh;
   padding-bottom: 10px;
-  overflow:auto;
+  overflow: auto;
 }
 
 #app h1 {
-  padding:4rem;
-  padding-bottom:1rem;
-  color:ivory;
-
+  padding: 4rem;
+  padding-bottom: 1rem;
+  color: ivory;
 }
 
 .container {
@@ -64,10 +54,6 @@ export default {
   list-style: none;
 }
 
-.navBar:hover {
-  cursor: pointer;
-}
-
 .navBar > li {
   margin: 1rem;
   padding-left: 24px;
@@ -75,6 +61,7 @@ export default {
   height: 2rem;
   border-radius: 5.5px;
   padding-top: 3px;
+  cursor: pointer;
 }
 
 .active {

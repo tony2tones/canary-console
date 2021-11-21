@@ -3,6 +3,8 @@
     <h3>Alerts</h3>
     <div class="alerts">
       <div v-for="alert in allAlerts" v-bind:key="alert.node_id" class="alert">
+        <h4>Node ID: {{ alert.node_id || "not found" }}</h4>
+        <hr/>
         <p>Key: {{ alert.key || "not found" }}</p>
         <p>Description: {{ alert.description || "not found" }}</p>
         <p>dst_host: {{ alert.dst_host || "not found" }}</p>
@@ -26,7 +28,6 @@
         <p>src_host reverse: {{ alert.src_host_reverse || "not found" }}</p>
         <p>src_port{{ alert.src_port || "not found" }}</p>
         <p>Update: {{ alert.updated || "not found" }}</p>
-
       </div>
     </div>
   </div>
@@ -36,32 +37,33 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Alerts",
+  components: {},
   methods: {
-      ...mapActions(['fetchAlerts'])
+    ...mapActions(["fetchAlerts"]),
   },
   computed: mapGetters(["allAlerts"]),
   created() {
-      this.fetchAlerts();
-  }
+    this.fetchAlerts();
+  },
 };
 </script>
 
 <style scoped>
 .alerts {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 0.6rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 0.6rem;
 }
 
 .alert {
-    border: 1px solid rgb(157, 212, 248);
-    background: rgb(200, 207, 200);
-    padding: 1rem;
-    width:390px;
-    border-radius: 5px;
-    text-align: left;
-    position: relative;
-    cursor: pointer;
-    overflow: auto;
+  border: 1px solid rgb(157, 212, 248);
+  background: rgb(200, 207, 200);
+  padding: 1rem;
+  width: 28rem;
+  border-radius: 5px;
+  text-align: left;
+  position: relative;
+  cursor: pointer;
+  overflow: auto;
 }
 </style>

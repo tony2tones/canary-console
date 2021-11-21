@@ -16,18 +16,48 @@
         Device status:
         {{ deviceSelect[0].device_live ? "online" : "offline" || "not found" }}
       </p>
-     
     </div>
     <div class="backdrop">
-      <h3 class="alert header"> Total alerts: {{ alerts.length }}</h3>
+      <h3 class="alert header">Total alerts: {{ alerts.length }}</h3>
       <div class="alerts">
         <div v-for="alert in alerts" v-bind:key="alert.node_id" class="alert">
-          <p v-tooltip="'You have ' + ' new messages.'">
-            {{ alert.key }}
-          </p>
+          <h4>Node ID: {{ alert.node_id || "not found" }}</h4>
+          <hr />
+          <p>Key: {{ alert.key || "not found" }}</p>
           <p>Description: {{ alert.description || "not found" }}</p>
           <p>dst_host: {{ alert.dst_host || "not found" }}</p>
-          <p>created: {{ alert.created || "not found" }}</p>
+          <p>src_host: {{ alert.src_host || "not found" }}</p>
+          <p>Created date:</p>
+          <p>{{ alert.created_printable || "not found" }}</p>
+          <p>created: {{ alert.created_age || "not found" }}</p>
+          <hr />
+          <div v-on:click="toggleExpander = !toggleExpander" class="clicker">
+            {{ toggleExpander ? 'View less ^' : 'View more v'}}
+            </div>
+            <div v-if="toggleExpander">
+              <p>created time: {{ alert.created || "not found" }}</p>
+              <p>created age: {{ alert.created_age || "not found" }}</p>
+              <p>
+                created in seconds:{{
+                  alert.created_age_seconds || "not found"
+                }}
+              </p>
+              <p>dst_port: {{ alert.dst_port || "not found" }}</p>
+              <p>Event count: {{ alert.events_count || "not found" }}</p>
+              <p>ip Address: {{ alert.ip_address || "not found" }}</p>
+              <p>Ippers: {{ alert.ippers || "not found" }}</p>
+              <p>local time: {{ alert.local_time || "not found" }}</p>
+              <p>Logic type: {{ alert.logtype || "not found" }}</p>
+              <p>Mac address: {{ alert.mac_address || "not found" }}</p>
+              <p>Netmask: {{ alert.netmask || "not found" }}</p>
+              <p>notified: {{ alert.notified || "not found" }}</p>
+              <p>
+                src_host reverse: {{ alert.src_host_reverse || "not found" }}
+              </p>
+              <p>src_port{{ alert.src_port || "not found" }}</p>
+              <p>Update: {{ alert.updated || "not found" }}</p>
+            
+          </div>
         </div>
       </div>
     </div>
@@ -36,11 +66,11 @@
 
 <script>
 import axios from "axios";
-import moment from "moment";
 
 export default {
   data() {
     return {
+      toggleExpander: false,
       id: this.$route.params.node_id,
       devicesPanel: [null],
       alerts: [null],
@@ -63,9 +93,6 @@ export default {
         this.alerts = this.devicesPanel.alerts.filter(
           (alert) => alert.node_id === this.$route.params.node_id
         );
-        let formattedTime = "";
-        // this.alerts.map(alert => alert.created =  moment(alert.created).format("DD/MM/YYYY hh:mm"));
-        console.log(this.alerts);
       });
   },
 };
@@ -104,5 +131,11 @@ export default {
   text-align: left;
   position: relative;
   overflow: auto;
+}
+
+.clicker {
+  font-size: 2rem;
+  text-align: center;
+  cursor: pointer;
 }
 </style>

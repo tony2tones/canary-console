@@ -27,7 +27,6 @@ const actions = {
                     devices[i]['alerts'] = newAlert;
                 }
             }
-            console.log('mostus',devices[0]);
         }
         commit('setDevices', devices);
     }
