@@ -1,10 +1,27 @@
 <template>
   <div id="single-device">
     <div class="device">
-      <h1>Device panel for {{ $route.params.node_id }}</h1>
-      <p>{{ devicesPanel.device_list }}</p>
+      <h1>Device panel overview</h1>
+      <p>Device node ID: {{ id }}</p>
+
+      <!-- <p>Description: {{ devicesPanel.device_list.description }}</p>
+      <p v-bind:key="devicesPanel.device_list.node_id">
+        IP address: {{ devicesPanel.device_list[0].ip_address }}
+      </p> -->
+      <p>IP address: {{ devicesPanel.device_list[0].ip_address }}</p>
+
+      <!-- <div class="container"> -->
+        <!-- <div class="alerts"> -->
+          <div v-for="alert in alerts" v-bind:key="alert.node_id" class="alert">
+            <p>{{ alert.key }}</p>
+            <p>{{ alert.description }}</p>
+            <p>{{ alert.dst_host }}</p>
+            <p>{{ alert.creted }}</p>
+            <p>{{ alert.node_id }}</p>
+          </div>
+        <!-- </div> -->
+      <!-- </div> -->
     </div>
-    <p>{{ alerts }}</p>
   </div>
 </template>
 
@@ -15,8 +32,8 @@ export default {
   data() {
     return {
       id: this.$route.params.node_id,
-      devicesPanel: [],
-      alerts: [],
+      devicesPanel: [null],
+      alerts: [null],
     };
   },
   methods: {},
@@ -34,13 +51,11 @@ export default {
             (device) => device.node_id === this.$route.params.node_id
           )
         );
-        console.log(
-          "Alerts Panel ",
+        "Alerts Panel ",
           (this.alerts = this.devicesPanel.alerts.filter(
             (alert) => alert.node_id === this.$route.params.node_id
-          ))
-        );
-        let alertDetails = this.devicesPanel;
+          ));
+        console.log("alerts", this.alerts);
       });
   },
 };
