@@ -3,11 +3,28 @@
     <h3>Alerts</h3>
     <div class="alerts">
       <div v-for="alert in allAlerts" v-bind:key="alert.node_id" class="alert">
-        <p>{{ alert.key }}</p>
-        <p>{{ alert.description }}</p>
-        <p>{{ alert.dst_host }}</p>
-        <p>{{ alert.creted }}</p>
-        <p>{{ alert.node_id }}</p>
+        <p>Key: {{ alert.key }}</p>
+        <p>Description: {{ alert.description }}</p>
+        <p>dst_host: {{ alert.dst_host }}</p>
+        <p>src_host: {{ alert.src_host }}</p>
+        <p>created: {{ alert.created_age }}</p>
+        <hr />
+        <p>created age: {{ alert.created_age }}</p>
+        <p>created in seconds:{{ alert.created_age_seconds }}</p>
+        <p>{{ alert.created_printable }}</p>
+        <p>{{ alert.dst_port }}</p>
+        <p>{{ alert.events_count }}</p>
+        <p>{{ alert.ip_address }}</p>
+        <p>{{ alert.ippers }}</p>
+        <p>{{ alert.local_time }}</p>
+        <p>{{ alert.logtype }}</p>
+        <p>{{ alert.mac_address }}</p>
+        <p>{{ alert.netmask }}</p>
+        <p>{{ alert.notified }}</p>
+        <p>{{ alert.src_host_reverse }}</p>
+        <p>{{ alert.src_port }}</p>
+        <p>{{ alert.updated }}</p>
+
       </div>
     </div>
   </div>
@@ -40,8 +57,9 @@ export default {
     padding: 1rem;
     width:390px;
     border-radius: 5px;
-    text-align: center;
+    text-align: left;
     position: relative;
     cursor: pointer;
+    overflow: auto;
 }
 </style>
