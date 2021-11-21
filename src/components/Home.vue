@@ -3,15 +3,15 @@
     <h3>Devices overview</h3>
     <div class="devices">
       <div
-        v-for="device in deviceInfo"
-        v-bind:key="device.node_id"
-        class="device"
-      >
+        v-for="device in deviceInfo" v-bind:key="device.node_id" class="device">
+        <div class="alert-counter">
+          <p>{{ device.alerts.length }}</p>
+        </div>
         <p>Node ID: {{ device.node_id }}</p>
+        <hr />
         <p>Description: {{ device.description }}</p>
         <p>ip address: {{ device.ip_address }}</p>
         <p>Alerts: {{ device.alerts.length }}</p>
-
         <button @click="goToDevicePanel(device.node_id)">
           Device full view
         </button>
@@ -56,5 +56,24 @@ export default {
   border-radius: 5px;
   text-align: left;
   position: relative;
+}
+
+.alert-counter {
+  position: absolute;
+  
+  color:white;
+  font-size: 2rem;
+  bottom: 75%;
+  left:80%;
+  border-radius: 1.5px;
+}
+
+.alert-counter > p {
+  background: red;
+  width: 3.5rem;
+  height: 3rem;
+  text-align: center;
+  margin:1rem;
+  margin-top:1rem;
 }
 </style>
