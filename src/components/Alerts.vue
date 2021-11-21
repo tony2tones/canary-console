@@ -61,6 +61,7 @@ export default {
 .alert {
   background: rgb(200, 207, 200);
   padding: 1rem;
+  margin:1rem;
   border-radius: 5px;
   text-align: left;
   position: relative;
