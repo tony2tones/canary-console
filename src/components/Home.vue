@@ -3,12 +3,16 @@
     <h3>Devices overview</h3>
     <div class="devices">
       <div
-        v-for="device in deviceInfo" v-bind:key="device.node_id" class="device">
+        v-for="device in deviceInfo"
+        v-bind:key="device.node_id"
+        class="device"
+      >
         <div class="alert-counter">
           <p>{{ device.alerts.length }}</p>
         </div>
-        <p>Node ID: {{ device.node_id }}</p>
+        <h4>Device name: {{ device.name }}</h4>
         <hr />
+        <p>Node ID: {{ device.node_id }}</p>
         <p>Description: {{ device.description }}</p>
         <p>ip address: {{ device.ip_address }}</p>
         <p>Alerts: {{ device.alerts.length }}</p>
@@ -60,11 +64,11 @@ export default {
 
 .alert-counter {
   position: absolute;
-  
-  color:white;
+
+  color: white;
   font-size: 2rem;
   bottom: 75%;
-  left:80%;
+  left: 80%;
   border-radius: 1.5px;
 }
 
@@ -73,7 +77,7 @@ export default {
   width: 3.5rem;
   height: 3rem;
   text-align: center;
-  margin:1rem;
-  margin-top:1rem;
+  margin: 1rem;
+  margin-top: 1rem;
 }
 </style>
