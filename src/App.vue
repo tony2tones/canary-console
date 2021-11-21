@@ -41,6 +41,7 @@ export default {
   background: #24272e;
   height: 100vh;
   padding-bottom: 10px;
+  overflow:auto;
 }
 
 #app h1 {
