@@ -51,6 +51,7 @@ export default {
 .navBar {
   color: antiquewhite;
   display: flex;
+  padding-left: 3rem;
   list-style: none;
 }
 

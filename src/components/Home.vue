@@ -67,7 +67,7 @@ export default {
 
   color: white;
   font-size: 2rem;
-  bottom: 75%;
+  bottom: 79%;
   left: 80%;
   border-radius: 1.5px;
 }

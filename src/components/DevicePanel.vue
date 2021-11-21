@@ -31,7 +31,7 @@
           <p>{{ alert.created_printable || "not found" }}</p>
           <p>created: {{ alert.created_age || "not found" }}</p>
           <hr />
-          <div v-on:click="toggleExpander = !toggleExpander" class="clicker">
+          <div v-on:click="toggleExpander = !toggleExpander" class="expander">
             {{ toggleExpander ? 'View less ^' : 'View more v'}}
             </div>
             <div v-if="toggleExpander">
@@ -133,8 +133,8 @@ export default {
   overflow: auto;
 }
 
-.clicker {
-  font-size: 2rem;
+.expander {
+  font-size: 1rem;
   text-align: center;
   cursor: pointer;
 }
