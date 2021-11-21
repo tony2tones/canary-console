@@ -4,30 +4,30 @@
       <h1>Device panel overview</h1>
       <hr />
       <p>Device node ID: {{ id }}</p>
-      <p>Description: {{ deviceSelect[0].description }}</p>
-      <p>IP address: {{ deviceSelect[0].ip_address }}</p>
+      <p>Description: {{ deviceSelect[0].description || "not found" }}</p>
+      <p>IP address: {{ deviceSelect[0].ip_address || "not found" }}</p>
 
       <hr />
-      <p>Device name: {{ deviceSelect[0].name }}</p>
+      <p>Device name: {{ deviceSelect[0].name || "not found" }}</p>
       <!-- <p>Device name: {{ deviceSelect[0].setting['device.desc']}} </p> -->
-      <p>Ghost: {{ deviceSelect[0].ghost }}</p>
+      <p>Ghost: {{ deviceSelect[0].ghost || "not found" }}</p>
       <p>
-        Device status: {{ deviceSelect[0].device_live ? "online" : "offline" }}
+        Device status:
+        {{ deviceSelect[0].device_live ? "online" : "offline" || "not found" }}
       </p>
-      <!-- <p>Description: {{ devicesPanel.device_list[0]. }}</p> -->
-
-      <!-- <div class="container"> -->
-      <!-- <AlertPanel :propAlerts="alerts"></AlertPanel> -->
+     
     </div>
-    <h3 class="alert header">Device alerts: total {{ alerts.length }}</h3>
-    <div class="alerts">
-      <div v-for="alert in alerts" v-bind:key="alert.node_id" class="alert">
-        <p v-tooltip="'You have ' + ' new messages.'">
-          {{ alert.key }}
-        </p>
-        <p>Description: {{ alert.description || 'not found'  }}</p>
-        <p>dst_host: {{ alert.dst_host || 'not found' }}</p>
-        <p>created: {{ alert.created || 'not found' }}</p>
+    <div class="backdrop">
+      <h3 class="alert header">Device alerts: total {{ alerts.length }}</h3>
+      <div class="alerts">
+        <div v-for="alert in alerts" v-bind:key="alert.node_id" class="alert">
+          <p v-tooltip="'You have ' + ' new messages.'">
+            {{ alert.key }}
+          </p>
+          <p>Description: {{ alert.description || "not found" }}</p>
+          <p>dst_host: {{ alert.dst_host || "not found" }}</p>
+          <p>created: {{ alert.created || "not found" }}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -82,6 +82,7 @@ export default {
 }
 
 .alerts {
+  background: #24272e;
   margin: 1rem;
   display: grid;
   text-align: center;
