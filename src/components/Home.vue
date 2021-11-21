@@ -10,7 +10,8 @@
         <p>Node ID: {{ device.node_id }}</p>
         <p>Description: {{ device.description }}</p>
         <p>ip address: {{ device.ip_address }}</p>
-        <p>{{ device.alerts.length }}</p>
+        <p>Alerts: {{ device.alerts.length }}</p>
+
         <button @click="goToDevicePanel(device.node_id)">
           Device full view
         </button>
@@ -21,15 +22,15 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+
 export default {
+  name: "Home",
   watch: {
     $route(to, from) {},
   },
-  name: "Devices",
   methods: {
     ...mapActions(["fetchDevicesAndAlerts"]),
     goToDevicePanel(node_id) {
-      console.log("has this been clicked ", node_id);
       let passed_di = String(node_id);
       this.$router.push({ path: `/devices/${passed_di}` });
     },
@@ -55,6 +56,5 @@ export default {
   border-radius: 5px;
   text-align: left;
   position: relative;
-  cursor: pointer;
 }
 </style>

@@ -1,22 +1,40 @@
 import axios from 'axios';
 
 const state = {
-    device_list: []
+    devicePanel: []
 };
 
 const getters = {
-    device_list: (state) => state.device_list
+    devicePanel: (state) => state.devicePanel
 };
 
 const actions = {
-    async fetchDevices({ commit }) {
-        const response  = await axios.get('https://thinkst-frontend-resources.s3-eu-west-1.amazonaws.com/incidents/data.json')
-        commit('setDevices', response.data.device_list);
+    async fetchDevicesAndAlerts({ commit }, node_id) {
+        const response = await axios.get('https://thinkst-frontend-resources.s3-eu-west-1.amazonaws.com/incidents/data.json')
+        let newArr = [];
+        // get some data stored to work with
+        let alerts = response.data.alerts;
+        let devices = response.data.device_list;
+        // get a list of the devices, note the node_id as an identifier
+        for (let i = 0; i < devices.length; i++) {
+            let nodeCheck = devices[i].node_id;
+
+            for (let j = 0; j < alerts.length; j++) {
+                let idLink = alerts[j].node_id;
+                if (idLink === nodeCheck) {
+                    let newAlert = alerts.filter(alert => alert.node_id === node_id);
+                    newArr.push(newAlert);
+                    devices[i]['alerts'] = newAlert;
+                }
+            }
+            console.log('mostus',devices[0]);
+        }
+        commit('setDevices', devices);
     }
 };
 
 const mutations = {
-    setDevices: (state, device_list) => (state.device_list = device_list)
+    setDevices: (state, devicePanel) => (state.devicePanel = devicePanel)
 };
 
 export default {
