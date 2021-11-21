@@ -18,7 +18,7 @@
      
     </div>
     <div class="backdrop">
-      <h3 class="alert header">Device alerts: total {{ alerts.length }}</h3>
+      <h3 class="alert header"> Total alerts: {{ alerts.length }}</h3>
       <div class="alerts">
         <div v-for="alert in alerts" v-bind:key="alert.node_id" class="alert">
           <p v-tooltip="'You have ' + ' new messages.'">
