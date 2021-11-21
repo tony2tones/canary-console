@@ -1,10 +1,14 @@
 <template>
   <div class="container">
-    <h3>Alerts</h3>
+    <div class="alert title">
+      <h3>Alerts</h3>
+      <h3>Listed alerts</h3>
+      Total alerts: {{ allAlerts.length }}
+    </div>
     <div class="alerts">
       <div v-for="alert in allAlerts" v-bind:key="alert.node_id" class="alert">
         <h4>Node ID: {{ alert.node_id || "not found" }}</h4>
-        <hr/>
+        <hr />
         <p>Key: {{ alert.key || "not found" }}</p>
         <p>Description: {{ alert.description || "not found" }}</p>
         <p>dst_host: {{ alert.dst_host || "not found" }}</p>
@@ -56,14 +60,16 @@ export default {
 }
 
 .alert {
-  border: 1px solid rgb(157, 212, 248);
   background: rgb(200, 207, 200);
   padding: 1rem;
-  width: 28rem;
   border-radius: 5px;
   text-align: left;
   position: relative;
   cursor: pointer;
   overflow: auto;
+}
+
+.title {
+  width: auto;
 }
 </style>
