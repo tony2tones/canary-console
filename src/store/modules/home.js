@@ -15,27 +15,21 @@ const actions = {
         // get some data stored to work with
         let alerts = response.data.alerts;
         let devices = response.data.device_list;
-        console.log('Alerts', alerts[0]);
-        console.log('devices length', devices[1]);
         // get a list of the devices, note the node_id as an identifier
-        // let deviceProfile = devices.map((device) => {
         for (let i = 0; i < devices.length; i++) {
             let nodeCheck = devices[i].node_id;
 
             for (let j = 0; j < alerts.length; j++) {
                 let idLink = alerts[j].node_id;
                 if (idLink === nodeCheck) {
-// gotta check if I already have alerts and if I do I'll need to Add it not replace it
-
-                    devices[i]['alerts'] = [alerts[j]];
+                    let newAlert = alerts.filter(alert => alert.node_id === devices[i].node_id);
+                    newArr.push(newAlert);
+                    devices[i]['alerts'] = newAlert;
                 }
-
             }
         }
-        console.log('sorted results', devices);
-        // console.log('sorted results', devices[0]['alerts'] = {alerts: [ {alert: 'one'}]});
         commit('setDevices', devices);
-}
+    }
 };
 
 const mutations = {
