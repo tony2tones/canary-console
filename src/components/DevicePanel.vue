@@ -2,31 +2,40 @@
   <div id="single-device">
     <div class="device">
       <h1>Device panel overview</h1>
+      <hr />
       <p>Device node ID: {{ id }}</p>
+      <p>Description: {{ deviceSelect[0].description }}</p>
+      <p>IP address: {{ deviceSelect[0].ip_address }}</p>
 
-      <!-- <p>Description: {{ devicesPanel.device_list.description }}</p>
-      <p v-bind:key="devicesPanel.device_list.node_id">
-        IP address: {{ devicesPanel.device_list[0].ip_address }}
-      </p> -->
-      <p>IP address: {{ devicesPanel.device_list[0].ip_address }}</p>
+      <hr />
+      <p>Device name: {{ deviceSelect[0].name }}</p>
+      <!-- <p>Device name: {{ deviceSelect[0].setting['device.desc']}} </p> -->
+      <p>Ghost: {{ deviceSelect[0].ghost }}</p>
+      <p>
+        Device status: {{ deviceSelect[0].device_live ? "online" : "offline" }}
+      </p>
+      <!-- <p>Description: {{ devicesPanel.device_list[0]. }}</p> -->
 
       <!-- <div class="container"> -->
-        <!-- <div class="alerts"> -->
-          <div v-for="alert in alerts" v-bind:key="alert.node_id" class="alert">
-            <p>{{ alert.key }}</p>
-            <p>{{ alert.description }}</p>
-            <p>{{ alert.dst_host }}</p>
-            <p>{{ alert.creted }}</p>
-            <p>{{ alert.node_id }}</p>
-          </div>
-        <!-- </div> -->
-      <!-- </div> -->
+      <!-- <AlertPanel :propAlerts="alerts"></AlertPanel> -->
+    </div>
+    <h3 class="alert header">Device alerts: total {{ alerts.length }}</h3>
+    <div class="alerts">
+      <div v-for="alert in alerts" v-bind:key="alert.node_id" class="alert">
+        <p v-tooltip="'You have ' + ' new messages.'">
+          {{ alert.key }}
+        </p>
+        <p>Description: {{ alert.description || 'not found'  }}</p>
+        <p>dst_host: {{ alert.dst_host || 'not found' }}</p>
+        <p>created: {{ alert.created || 'not found' }}</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import moment from "moment";
 
 export default {
   data() {
@@ -34,6 +43,7 @@ export default {
       id: this.$route.params.node_id,
       devicesPanel: [null],
       alerts: [null],
+      deviceSelect: [],
     };
   },
   methods: {},
@@ -45,17 +55,16 @@ export default {
       .then((res) => {
         this.devicesPanel.alerts = res.data.alerts;
         this.devicesPanel.device_list = res.data.device_list;
-        console.log(
-          "device Panel ",
-          this.devicesPanel.device_list.filter(
-            (device) => device.node_id === this.$route.params.node_id
-          )
+
+        this.deviceSelect = this.devicesPanel.device_list.filter(
+          (device) => device.node_id === this.$route.params.node_id
         );
-        "Alerts Panel ",
-          (this.alerts = this.devicesPanel.alerts.filter(
-            (alert) => alert.node_id === this.$route.params.node_id
-          ));
-        console.log("alerts", this.alerts);
+        this.alerts = this.devicesPanel.alerts.filter(
+          (alert) => alert.node_id === this.$route.params.node_id
+        );
+        let formattedTime = "";
+        // this.alerts.map(alert => alert.created =  moment(alert.created).format("DD/MM/YYYY hh:mm"));
+        console.log(this.alerts);
       });
   },
 };
@@ -66,8 +75,32 @@ export default {
   border: 1px solid rgb(157, 212, 248);
   background: rgb(200, 207, 200);
   padding: 1rem;
+  margin: 1rem;
   border-radius: 5px;
   text-align: left;
   position: relative;
+}
+
+.alerts {
+  margin: 1rem;
+  display: grid;
+  text-align: center;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 0.6rem;
+}
+.alert.header {
+  display: inline-block;
+  margin: 1rem;
+  text-align: center;
+}
+.alert {
+  border: 1px solid rgb(157, 212, 248);
+  background: rgb(200, 207, 200);
+  padding: 1rem;
+  width: 390px;
+  border-radius: 5px;
+  text-align: left;
+  position: relative;
+  overflow: auto;
 }
 </style>

@@ -31,7 +31,7 @@ export default {
 
 <style scoped>
 #app {
-  background: #b3c6e4;
+  background: #24272e;
   height: 100%;
   padding-bottom: 10px;
 }

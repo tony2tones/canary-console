@@ -9,14 +9,30 @@ import DevicePanel from './components/DevicePanel.vue';
 import store from './store';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
+// tool tip
+import VTooltip from 'v-tooltip'
 // Import Bootstrap an BootstrapVue CSS files (order is important)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 // import './app.scss'
 
+import VueMoment from 'vue-moment';
+
+
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
+
+Vue.use(VTooltip);
+
+Vue.use(VueMoment);
+// Date formatter
+Vue.filter('formatDate', function(value) {
+  console.log('time in seconds ', value);
+    if (value) {
+        return VueMoment(value).format('MM/DD/YYYY hh:mm')
+    }
+});
 
 const routes = [
   { path: '/', component: Home },
