@@ -4,6 +4,7 @@
       <h1>Device panel overview</h1>
       <hr />
       <p>Device node ID: {{ id }}</p>
+      <p>Device name: {{ deviceSelect[0].name || "not found" }}</p>
       <p>Description: {{ deviceSelect[0].description || "not found" }}</p>
       <p>IP address: {{ deviceSelect[0].ip_address || "not found" }}</p>
 
