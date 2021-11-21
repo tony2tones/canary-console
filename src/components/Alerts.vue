@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div class="alert title">
-      <h3>Alerts</h3>
       <h3>Listed alerts</h3>
       Total alerts: {{ allAlerts.length }}
     </div>
