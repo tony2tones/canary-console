@@ -64,6 +64,10 @@ export default {
   padding-top: 3px;
   cursor: pointer;
 }
+.navBar > li:hover {
+  background: rgb(71, 71, 70);
+  color: ivory;
+}
 
 .active {
   background: ivory;
