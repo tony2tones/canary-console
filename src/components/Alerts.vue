@@ -4,6 +4,7 @@
     <div class="alerts">
       <div v-for="alert in allAlerts" v-bind:key="alert.node_id" class="alert">
         <h4>Node ID: {{ alert.node_id || "not found" }}</h4>
+        <hr/>
         <p>Key: {{ alert.key || "not found" }}</p>
         <p>Description: {{ alert.description || "not found" }}</p>
         <p>dst_host: {{ alert.dst_host || "not found" }}</p>
@@ -58,7 +59,7 @@ export default {
   border: 1px solid rgb(157, 212, 248);
   background: rgb(200, 207, 200);
   padding: 1rem;
-  width: 390px;
+  width: 28rem;
   border-radius: 5px;
   text-align: left;
   position: relative;

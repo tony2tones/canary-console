@@ -21,7 +21,6 @@
 </template>
 
 <script>
-
 export default {
   name: "app",
 };
@@ -33,14 +32,13 @@ export default {
   background: #24272e;
   height: 100vh;
   padding-bottom: 10px;
-  overflow:auto;
+  overflow: auto;
 }
 
 #app h1 {
-  padding:4rem;
-  padding-bottom:1rem;
-  color:ivory;
-
+  padding: 4rem;
+  padding-bottom: 1rem;
+  color: ivory;
 }
 
 .container {
